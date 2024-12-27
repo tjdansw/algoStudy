@@ -28,9 +28,11 @@ public class Baek_1629 {
         temp = a;
         binary = Integer.toBinaryString(b);
         for (int i = binary.length()-1; i >=0; i--) {
+            System.out.println("곱하는 값 : "+temp);
             if (binary.charAt(i) == '1') {
                 result = (result * temp)%c;
             }
+            System.out.println("결과값 :" + result);
             temp = (temp * temp)%c;
         }
         System.out.println(result);
