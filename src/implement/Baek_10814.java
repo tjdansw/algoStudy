@@ -1,4 +1,4 @@
-package input;
+package implement;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
