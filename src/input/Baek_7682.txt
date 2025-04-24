@@ -1,0 +1,13 @@
+XXXOO....
+...XXXOO.
+...O.OXXX
+XO.XO.X..
+OX..X.OX.
+..X.OXO.X
+O.X.XOX..
+X.XOXXOO.
+XXOXXO.OO
+.........
+XXX......
+XXXOOXXOO
+end
