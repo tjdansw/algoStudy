@@ -25,9 +25,6 @@ public class Baek_2098 {
 		}
 
 		System.out.println(tsp(0,1));
-		for(int i = 0;i<n;i++){
-			System.out.println(Arrays.toString(dp[i]));
-		}
 	}
 
 	static int tsp(int current, int visited) {
