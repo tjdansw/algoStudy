@@ -39,3 +39,7 @@ target/
 .DS_Store
 Thumbs.db
 *.log
+
+### 일반 ###
+src/Main.java
+src/input.txt
