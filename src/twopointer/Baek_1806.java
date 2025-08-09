@@ -2,42 +2,48 @@ package twopointer;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Baek_1806 {
-    static StringTokenizer st;
-    static BufferedReader br;
-
-    static int n, s,l,r, sum = 0, min = 100000001;
+    static int n, s;
     static int[] nums;
-
-    public static void main(String[] args) throws Exception {
-        System.setIn(new FileInputStream("src/input/Baek_1806.txt"));
-        br = new BufferedReader(new InputStreamReader(System.in));
-        st = new StringTokenizer(br.readLine());
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         s = Integer.parseInt(st.nextToken());
-        nums = new int[n+1];
-
+        nums = new int[n];
         st = new StringTokenizer(br.readLine());
-        for (int i = 1; i <= n; i++) {
+        int total = 0;
+        for (int i = 0; i < n; i++) {
             nums[i] = Integer.parseInt(st.nextToken());
-        }
-
-        l = 0;
-        r = 0;
-        while(r<=n){
-            if(sum>=s){
-                min = Math.min(min,r-l+1);
-                sum -= nums[l];
-                l++;
-            }else{
-                if(r==n) break;
-                r++;
-                sum+= nums[r];
+            total += nums[i];
+            if(nums[i]>=s){
+                System.out.println(1);
+                return;
             }
         }
-        System.out.println(min==100000001?0:min);
+        if(total < s){
+            System.out.println(0);
+            return;
+        }
+
+        int min = n+1;
+        int l = 0, r= 0, sum = 0;
+
+        while(true){
+            if(sum>=s){
+                min = Math.min(min, r-l);
+                sum -= nums[l++];
+            }else{
+                if(r==n){
+                    break;
+                }
+                sum += nums[r++];
+            }
+        }
+        System.out.println(min==n+1?0:min);
     }
 }
