@@ -1,53 +1,36 @@
 package dynamic_programming;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.io.*;
 
+// 2294
 public class Baek_2294 {
-    static StringTokenizer st;
-    static BufferedReader br;
 
-    static int n, k;
-    static int[] dp;
-    static int[] coins;
-
-    public static void main(String[] args) throws Exception {
-        br = new BufferedReader(new InputStreamReader(System.in));
-        st = new StringTokenizer(br.readLine());
-
-        n = Integer.parseInt(st.nextToken());
-        k = Integer.parseInt(st.nextToken());
-        coins = new int[n];
-        dp = new int[k+1];
-        Arrays.fill(dp, Integer.MAX_VALUE);
-
-        for(int i = 0;i<n;i++){
-            coins[i] = Integer.parseInt(br.readLine());
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
+        TreeSet<Integer> coins = new TreeSet<>();
+        for (int i = 0; i < n; i++) {
+            coins.add(Integer.parseInt(br.readLine()));
         }
-        dp[0] = 0;
-
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)->{
-            return Integer.compare(dp[a],dp[b]);
-        });
-        pq.offer(0);
-        while(!pq.isEmpty()){
-            int cur = pq.poll();
-
-            for(int coin : coins){
-                int value = cur+coin;
-                if(value<=k&&dp[value]>dp[cur]+1){
-                    dp[value] = dp[cur]+1;
-                    pq.offer(value);
-                    if(value==k){
-                        System.out.println(dp[value]);
-                        return;
-                    }
+        int[] value = new int[k+1];
+        int max = k+1;
+        Arrays.fill(value, max);
+        value[0] = 0;
+        for(int coin : coins){
+            if(coin > k){
+                break;
+            }
+            for(int current = coin; current <= k; current++){
+                if(value[current-coin] == max){
+                    continue;
                 }
+                value[current] = Math.min(value[current], value[current-coin] + 1);
             }
         }
-        System.out.println(-1);
+        System.out.println(value[k]==max?-1:value[k]);
     }
 }
+
