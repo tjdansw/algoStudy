@@ -42,5 +42,6 @@ Thumbs.db
 
 ### 일반 ###
 src/Main.java
+src/Temp.java
 src/input.txt
 src/dynamic_programming/git
