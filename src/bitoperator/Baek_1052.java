@@ -13,7 +13,6 @@ public class Baek_1052 {
         int n = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
 
-        System.out.println(Integer.bitCount(n));
         if (k >= Integer.bitCount(n)) {
             System.out.println(0);
             return;
